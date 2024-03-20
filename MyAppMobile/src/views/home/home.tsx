@@ -1,11 +1,16 @@
-import React from 'react' 
+import React, { useState} from 'react'; 
 import { View, Text, StyleSheet, Image, TextInput, ToastAndroid, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Importa useNavigation desde @react-navigation/native
 import { RoundedButton } from '../../components/RoundedButton'; 
 import { StackNavigationProp } from '@react-navigation/stack'; 
 import { RootStackParamList } from '../../../App'; 
 
+
 export const HomeScreen = () => { 
+
+    const [email, setEmail] = useState(''); 
+    const [password, setPassword] = useState(''); 
+
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();;
 
@@ -37,6 +42,8 @@ style={styles.imageBackground}
                         style={styles.formTextInput} 
                         placeholder='Correo electrónico' 
                         keyboardType='email-address' 
+                        value={email} 
+                        onChangeText={ text => setEmail(text)} 
                     /> 
                 </View> 
                 <View style={styles.formInput}> 
@@ -48,12 +55,16 @@ style={styles.imageBackground}
                         placeholder='Contraseña' 
                         keyboardType='default' 
                         secureTextEntry={true} 
+                        value={password} 
+                        onChangeText={ text => setPassword(text)} 
                     /> 
                 </View> 
  
                 <View style={{ marginTop: 30 }}> 
-                    <RoundedButton text='ENTRAR' onPress={() => 
-ToastAndroid.show('LA BUENA JAMIRSITO PAPASITO', ToastAndroid.SHORT)} /> 
+                <RoundedButton text='ENTRAR' onPress={() =>{ 
+                        console.log('Email: ' + email); 
+                        console.log('Password: ' + password); 
+                    }} /> 
                 </View> 
  
                 <View style={styles.formRegister}>
