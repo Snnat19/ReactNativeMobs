@@ -1,5 +1,6 @@
 import React from 'react' 
 import { View, Text, StyleSheet, Image, TextInput, ToastAndroid, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Importa useNavigation desde @react-navigation/native
 import { RoundedButton } from '../../components/RoundedButton'; 
 import { StackNavigationProp } from '@react-navigation/stack'; 
 import { RootStackParamList } from '../../../App'; 
@@ -23,7 +24,7 @@ style={styles.imageBackground}
                     source={require('../../../assets/logo.png')} 
                     style={styles.logoImage} 
                 /> 
-                <Text style={styles.logoText}>FOOD APP</Text> 
+                <Text style={styles.logoText}>App de Nat</Text> 
             </View> 
  
             <View style={styles.form}> 
@@ -52,11 +53,11 @@ style={styles.imageBackground}
  
                 <View style={{ marginTop: 30 }}> 
                     <RoundedButton text='ENTRAR' onPress={() => 
-ToastAndroid.show('HOLA!', ToastAndroid.SHORT)} /> 
+ToastAndroid.show('LA BUENA JAMIRSITO PAPASITO', ToastAndroid.SHORT)} /> 
                 </View> 
  
                 <View style={styles.formRegister}>
-                <Text>¿No tienes cuenta?</Text>
+                <Text>¿No tienes cuenta? no me importa, pero</Text>
                 <TouchableOpacity onPress={handleRegisterPress}>
                     <Text style={styles.formRegisterText}>Regístrate</Text>
                 </TouchableOpacity>
