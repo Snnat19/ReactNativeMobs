@@ -7,7 +7,8 @@ import styles from './Styles';
  
 export const RegisterScreen = () => { 
  
-  const { name, lastname, email, phone, password, confirmPassword, errorMessage, onChange, register } = useViewModel(); 
+  const { name, lastname, email, phone, password, confirmPassword, 
+errorMessage, onChange, register } = useViewModel(); 
  
   //Para saber si la variable ya tiene establecido un valor 
   useEffect(() => { 
