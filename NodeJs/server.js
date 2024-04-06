@@ -10,7 +10,7 @@ const cors = require('cors');
 */
 const userRoutes = require('./routes/userRoutes');
 
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3003;
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -25,7 +25,7 @@ app.set('port', port);
 userRoutes(app);
 
 //direccion ip V4 de la maquina, consultar con ipconfig
-server.listen(3002, '192.168.101.79' || 'localhost', function() {
+server.listen(3003, '192.168.101.79' || 'localhost', function() {
 console.log('Aplicación de NodeJS ' + process.pid + ' inicio en el puerto ' + port);
 
 app.get('/', (req, res) => {
