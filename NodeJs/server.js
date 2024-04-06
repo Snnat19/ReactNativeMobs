@@ -7,8 +7,8 @@ const cors = require('cors');
 /**
 * Importar rutas
 */
-const users = require('./routes/usersRoutes');
-const port = process.env.PORT || 3000; 
+const users = require('./routes/userRoutes');
+const port = process.env.PORT || 3001; 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,8 +20,7 @@ app.set('port', port);
 */
 users(app);
 //direccion ip V4 de la maquina, consultar con ipconfig 
-//mi ip:192.168.1.43
-server.listen(3000, '192.168.101.79' || 'localhost', function() {
+server.listen(3001, '192.168.101.79' || 'localhost', function() {
  console.log('Aplicación de NodeJS ' + process.pid + ' inicio en el puerto ' + port);
 });
 app.get('/', (req, res) => { 

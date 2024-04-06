@@ -11,8 +11,8 @@ User.create = async (user, result) => {
             phone,
             image,
             password,
-            create_at,
-            update_at
+            created_at,
+            updated_at
             )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
@@ -39,5 +39,7 @@ User.create = async (user, result) => {
         }
     );
 }
+
+module.exports = User;
 
 module.exports = User;
