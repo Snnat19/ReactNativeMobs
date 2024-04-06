@@ -1,10 +1,10 @@
+
+
 import axios from 'axios';
-
 const ApiDelivery = axios.create({
-    baseURL: 'http://192.168.101.79:3003/api',
-    headers: {
-        'Content-type': 'application/json'
-    }
-})
-
-export { ApiDelivery }
+ baseURL: 'https://192.168.101.79:3003/api',
+ headers: {
+ 'Content-Type': 'application/json'
+ }
+});
+export {ApiDelivery};
