@@ -15,7 +15,10 @@ const App = () => {
             <Stack.Navigator screenOptions={{
                 headerShown: false
             }}>
-
+                <Stack.Screen
+              name="HomeScreen"
+              component={HomeScreen}
+          />
                 <Stack.Screen
                     name="RegisterScreen"
                     component={RegisterScreen}
