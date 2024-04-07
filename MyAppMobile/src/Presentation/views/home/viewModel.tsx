@@ -1,5 +1,8 @@
-import React, { useState } from 'react' 
+import React, { useEffect, useState } from 'react'
+import { SaveUserLocalUseCase } from '../../../Domain/useCases/userLocal/SaveUserLocal'; 
+import { GetUserLocalUseCase } from '../../../Domain/useCases/userLocal/GetUserLocal';
 import { LoginAuthUseCase } from '../../../Domain/useCases/auth/Login.Auth'; 
+import { useUserLocal } from '../../hooks/useUserLocal'; 
  
 const HomeViewModel = () => { 
     const [errorMessage, setErrorMessage] = useState(''); 
@@ -9,7 +12,14 @@ const HomeViewModel = () => {
             password: '' 
         } 
     ); 
-     
+ 
+    const { user, getUserSession } = useUserLocal(); 
+    console.log('Usuario: ' + JSON.stringify(user)); 
+ 
+    useEffect(() => { //Se ejecuta cuando se instancia el viewModel 
+        getUserSession(); 
+    }, []);         
+ 
     const onChange = (property: string, value: any) => { 
         setValues({...values, [property]: value}); 
     } 
@@ -21,9 +31,11 @@ const HomeViewModel = () => {
             if(!response.success) { 
                 setErrorMessage(response.message); 
             } 
- 
+            else { 
+                await SaveUserLocalUseCase(response.data); 
+                getUserSession(); 
+            } 
         } 
- 
     }; 
  
     const isValidForm = () => { 
@@ -35,17 +47,16 @@ const HomeViewModel = () => {
             setErrorMessage('La contraseña es requerida'); 
             return false; 
         } 
- 
- 
         return true; 
     } 
  
     return { 
         ...values, 
+        user, 
         onChange, 
         login, 
         errorMessage 
     } 
 } 
  
-export default HomeViewModel;  
+export default HomeViewModel; 

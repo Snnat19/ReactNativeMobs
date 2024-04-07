@@ -12,7 +12,7 @@ const cors = require('cors');
  */ 
 const usersRoutes = require('./routes/userRoutes'); 
  
-const port = process.env.PORT || 3003; 
+const port = process.env.PORT || 3006; 
  
 app.use(logger('dev'));  
 app.use(express.json()); 
@@ -33,7 +33,7 @@ app.set('port', port);
 usersRoutes(app); 
  
 // Iniciar el servidor 
-server.listen(3003, '192.168.101.79' || 'localhost', function() { 
+server.listen(port, '192.168.101.82' || 'localhost', function() { 
     console.log('App Node.js ' + process.pid + ' ejecutando en ' + server.address().address + ':' + server.address().port); 
 }); 
  

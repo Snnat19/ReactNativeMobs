@@ -3,27 +3,32 @@ import { useNavigation } from '@react-navigation/native';
  
 import { View, Text, Image, TextInput, StyleSheet, ToastAndroid, 
 TouchableOpacity } from 'react-native' 
-import { RoundedButton } from 
-'../../../Presentation/components/RoundedButton'; 
-import { StackNavigationProp } from '@react-navigation/stack'; 
+import { RoundedButton } from '../../../Presentation/components/RoundedButton'; 
+import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack'; 
 import { RootStackParamList } from '../../../../App'; 
 import useViewModel from './viewModel'; 
 import { CustomTextInput } from '../../components/CusatomTextInput'; 
 import styles from './Styles'; 
  
-export const HomeScreen = () => { 
+interface Props extends StackScreenProps<RootStackParamList, 'HomeScreen'>{}; 
  
-    const { email, password, errorMessage, onChange, login } = 
-useViewModel(); 
+export const HomeScreen = ({navigation, route}: Props) => { 
  
-    const navigation = 
-useNavigation<StackNavigationProp<RootStackParamList>>(); 
+    const { email, password, errorMessage, user,  onChange, login } = useViewModel(); 
+ 
+    //const navigation = useNavigation<StackNavigationProp<RootStackParamList>>(); 
  
     useEffect(() => { 
         if (errorMessage !== '') { 
             ToastAndroid.show(errorMessage, ToastAndroid.LONG); 
         } 
     }, [errorMessage]); 
+ 
+    useEffect(() => { 
+        if (user?.id !== null && user?.id !== undefined) { 
+            navigation.replace('ProfileInfoScreen'); 
+        } 
+    }, [user]); 
  
     return ( 
         <View style={styles.container}> 
@@ -59,7 +64,6 @@ useNavigation<StackNavigationProp<RootStackParamList>>();
                     property='password' 
                     onChangeText={onChange} 
                 /> 
- 
                 <View style={{ marginTop: 30 }}> 
                     <RoundedButton text='ENTRAR' onPress={() => login()} /> 
                 </View> 
@@ -70,7 +74,10 @@ useNavigation<StackNavigationProp<RootStackParamList>>();
                         <Text style={styles.formRegisterText}>Registrate</Text> 
                     </TouchableOpacity> 
                 </View> 
+ 
             </View> 
+ 
         </View> 
     ); 
-}
+} 
+ 
