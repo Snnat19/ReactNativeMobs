@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react' 
-import { View, Text, Image, ScrollView, ToastAndroid } from 'react-native' 
-import { RoundedButton } from '../../components/RoundedButton'; 
-import useViewModel from './ViewModel'; 
-import { CustomTextInput } from '../../../Presentation/components/CusatomTextInput'; 
-import styles from './Styles'; 
- 
+import React, { useEffect } from 'react'
+import { Image, View, Text, ScrollView, ToastAndroid, TouchableOpacity } from 'react-native';
+import { CustomTextInput } from '../../components/CusatomTextInput';
+import { RoundedButton } from '../../components/RoundedButton';
+import useViewModel from './ViewModel';
+import styles from './Styles';
+
 export const RegisterScreen = () => { 
- 
-  const { name, lastname, email, phone, password, confirmPassword, 
-errorMessage, onChange, register } = useViewModel(); 
+  const { name, image, lastname, email, phone, password, confirmPassword, 
+errorMessage, onChange, register,  pickImage } = useViewModel(); 
  
   //Para saber si la variable ya tiene establecido un valor 
   useEffect(() => { 
@@ -17,16 +16,29 @@ errorMessage, onChange, register } = useViewModel();
   }, [errorMessage]); 
  
   return ( 
-    <View style={styles.container}> 
-      <Image 
-        source={require('../../../../assets/chef.jpg')} 
-        style={styles.imageBackground} 
-      /> 
-      <View style={styles.logoContainer}> 
+    <View style={styles.container}>
+    <Image
+      source={ require('../../../../assets/chef.jpg') } 
+      style={ styles.imageBackground }
+      />
+
+    <View style={ styles.logoContainer }>
+      <TouchableOpacity onPress={() => pickImage()}> 
+      {
+        image == ''
+        ?
         <Image 
-          source={require('../../../../assets/user_image.png')} 
-          style={styles.logoImage} 
-        /> 
+          source={ require('../../../../assets/user_image.png') }
+          style={ styles.logoImage }
+        />
+      :
+        <Image 
+          source={{uri: image}}
+          style={styles.logoImage}
+        />
+      }
+      </TouchableOpacity>
+
         <Text style={styles.logoText}>SELECCIONA UNA IMAGEN</Text> 
       </View> 
  
