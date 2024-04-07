@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { View, Text, Image, ScrollView, ToastAndroid } from 'react-native' 
 import { RoundedButton } from '../../components/RoundedButton'; 
 import useViewModel from './ViewModel'; 
-import { CustomTextInput } from '../../components/CustomTextInput'; 
+import { CustomTextInput } from '../../../Presentation/components/CusatomTextInput'; 
 import styles from './Styles'; 
  
 export const RegisterScreen = () => { 

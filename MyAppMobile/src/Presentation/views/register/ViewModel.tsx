@@ -1,6 +1,5 @@
 import React, { useState } from "react" 
-import { RegisterAuthUseCase } from 
-"../../../Domain/useCases/auth/RegisterAuth"; 
+import { RegisterAuthUseCase } from "../../../Domain/useCases/auth/RegisterAuth"; 
  
 const RegisterViewModel = () => { 
     const [errorMessage, setErrorMessage] = useState(''); 
